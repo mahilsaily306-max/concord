@@ -1337,8 +1337,8 @@ export class Concord {
 
   controls(ref: string) {
     const asset = this.asset(ref);
-    const log = buildControlsLog(this.loadControlEvents(asset.id), this.instructions(asset.id), { asOf: asset.syncedAt ?? new Date().toISOString() },
-      ...(asset.syncedAt ? { asOf: asset.syncedAt } : {}),
+    const log = buildControlsLog(this.loadControlEvents(asset.id), this.instructions(asset.id), {
+      asOf: asset.syncedAt ?? new Date().toISOString(),
     });
     const instructionJson = (i: Instruction) => ({
       ref: i.ref,

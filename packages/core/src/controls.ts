@@ -139,7 +139,7 @@ function compatible(record: ControlRecord, instruction: Instruction): boolean {
 export function buildControlsLog(
   events: AssetEvent[],
   instructions: Instruction[],
-  options: ControlsOptions = {},
+  options: ControlsOptions,
 ): ControlsLog {
   const windowMs = options.windowMs ?? 72 * 3_600_000;
   const records = controlEvents(events);
@@ -170,7 +170,7 @@ export function buildControlsLog(
     }
   }
 
-  const asOf = options.asOf ? Date.parse(options.asOf) : Date.now();
+  const asOf = Date.parse(options.asOf);
   const pending: Instruction[] = [];
   for (const instruction of ordered) {
     if (used.has(instruction.ref)) continue;
